@@ -1,0 +1,69 @@
+// ************************************************
+//   BaseConvert.java
+//   Author: Brandon Russeau
+//   Converts base 10 numbers to another base
+//   (at most 4 digits in the other base).  The
+//   base 10 number and the base are input.
+// ************************************************
+
+import java.util.Scanner;
+
+public class BaseConvert
+{
+   public static void main (String[] args)
+   {
+      int base;        // the new base
+      int base10Num;   // the number in base 10
+      int maxNumber;   // the maximum number that will fit
+                       // in 4 digits in the new base
+      int base10;
+
+
+      
+      int place0;      // digit in the 1's (base^0) place
+      int place1;      // digit in the base^1 place
+      int place2;      // digit in the base^2 place
+      int place3;      // digit in the base^3 place
+
+      String baseBNum = new String (""); // the number in the new base
+      Scanner myInput = new Scanner(System.in);  // We want to access keyboard input
+
+      // read in the base 10 number and the base
+      System.out.println();
+      System.out.println ("Base Conversion Program");
+      System.out.println();
+      System.out.print ("Please enter a base (2 - 9): ");
+      base = myInput.nextInt();
+      
+      // The largest base 10 number that can be represented by at most 4 digits 
+      // in the new base, B, is B to the 4th power, minus 1.
+      // Tell the user to enter a number no bigger than that:
+      maxNumber = base*base*base*base-1;
+      System.out.println("The maximum base number is " + maxNumber);
+
+      System.out.print ("Please enter a base 10 number between 0 and "+(base*base*base*base-1)+" to convert to base "+base+": ");
+      base10Num = myInput.nextInt();
+    
+
+      // Do the conversion (see notes in lab)
+      place0 = base10Num%base;
+      base10 = base10Num/base;
+      
+      place1 = base10%base;
+      base10 = base10/base;
+      
+      place2 = base10%base;
+      base10 = base10/base;
+      
+      place3 = base10%base;
+      base10 = base10/base;
+
+      // Print the result (see notes in lab)
+      baseBNum= " " + place3;
+      baseBNum= baseBNum + place2 + place1 + place0;
+      
+      System.out.println(base10Num + " with a base of 10 converts to" + baseBNum + " with a base of " + base + ".");
+      
+    }
+}
+       
