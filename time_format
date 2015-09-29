@@ -1,0 +1,146 @@
+/*
+ * Brandon Russeau
+ * E01160846
+ * COSC 211-00
+ * Winter 2015
+ * Lab 4
+ * Convert from 24-hour time format to 12-hour time format
+ */
+import java.util.InputMismatchException;
+import java.util.Scanner;
+public class TimeFormat {
+
+	public static void main(String[] args){
+
+		Scanner keyboard = new Scanner(System.in);
+		keyboard.useDelimiter("\\s|:");
+
+		int hours;
+		int minutes;
+		boolean done=false;
+
+		while(!done){
+			System.out.print("Enter time in 24-hour notation: ");
+			try {
+				hours = keyboard.nextInt();
+				minutes = keyboard.nextInt();
+				if(hours>23 || hours<0){		//check for valid hours
+					throw new TimeFormatException();
+				}
+				else if(minutes<0 || minutes>59){		//check for valid minutes
+					throw new TimeFormatException("Incorrect values for time");
+				}
+				else{
+					if(hours<12 && hours!=00){
+						if(minutes<10){
+							System.out.println(hours+":"+"0"+minutes+" am");
+						}
+						else{
+							System.out.println(hours+":"+minutes+" am");
+						}
+					}
+					else if(hours>=12){
+						if(minutes<10){
+							System.out.println(TimeFormat.convertHour(hours)+":"+"0"+minutes+" pm");
+						}
+						else{
+							System.out.println(TimeFormat.convertHour(hours)+":"+minutes+" pm");
+						}
+					}
+					else
+						if(minutes<10){
+							System.out.println(TimeFormat.convertHour(hours)+":"+"0"+minutes+" am");
+						}
+						else{
+							System.out.println(TimeFormat.convertHour(hours)+":"+minutes+" am");
+						}
+				}
+			}
+			catch(TimeFormatException e){		//my created exception class
+				System.out.println(e.getMessage());	
+			}
+
+			catch(InputMismatchException e){
+				System.out.println("Input is not in time format");
+				keyboard.nextLine();
+			}
+			System.out.println("Again? (y/n)");
+			if(keyboard.next().equalsIgnoreCase("n")){
+				done=true;
+				System.out.println("Goodbye");
+			}
+			else{
+				done=false;
+				keyboard.nextLine();
+			}
+		}
+
+	}
+
+	public static int convertHour(int hrs){			//convert military hours to standard time
+		int hours=0;
+
+		if(hrs<13 && hrs>00){
+			hours=hrs;
+		}
+		else{
+			switch(hrs){
+			case 0:
+				hours = 12;
+				break;
+			case 13:
+				hours = 1;
+				break;
+			case 14:
+				hours = 2;
+				break;
+			case 15:
+				hours = 3;
+				break;
+			case 16:
+				hours = 4;
+				break;
+			case 17:
+				hours = 5;
+				break;
+			case 18:
+				hours = 6;
+				break;
+			case 19:
+				hours = 7;
+				break;
+			case 20:
+				hours = 8;
+				break;
+			case 21:
+				hours = 9;
+				break;
+			case 22:
+				hours = 10;
+				break;
+			case 23:
+				hours = 11;
+				break;
+
+			}
+
+		}
+		return hours;
+	}
+
+}
+
+/*
+Enter time in 24-hour notation: 00:12
+12:12 am
+Again? (y/n)
+y
+Enter time in 24-hour notation: 17:15
+5:15 pm
+Again? (y/n)
+y
+Enter time in 24-hour notation: as:45
+Input is not in time format
+Again? (y/n)
+*/
+
