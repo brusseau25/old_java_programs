@@ -1,0 +1,20 @@
+/*
+ * Brandon Russeau
+ * E01160846
+ * COSC 211-00
+ * Winter 2015
+ * Lab 4
+ * Exception class
+ */
+
+public class TimeFormatException extends Exception {
+
+	public TimeFormatException(){
+		super("Incorrect time format");
+	}
+
+	public TimeFormatException(String message){
+		super(message);
+	}
+
+}
