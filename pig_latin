@@ -1,0 +1,34 @@
+
+/**
+ * Print name in Pig Latin
+ * 
+ * Author: Brandon Russeau
+ * 9/10/14
+ */
+public class PigLatin
+{
+    public static void main (String[] args)
+    {
+        String fName= "brandon";
+        String lName= "russeau";
+        String end= "ay";
+        
+        //Change first and last name to upper case
+        
+        String firstName= fName.toUpperCase();
+        String lastName= lName.toUpperCase();
+        
+        //Kept getting an error when using .toUpperCase on a specific char
+        //This is probably more typing than what I actually needed
+        
+        String firstPigName= firstName.charAt(1) + fName.substring(2) + fName.charAt(0) + end;
+        String lastPigName= lastName.charAt(1) + lName.substring(2) + lName.charAt(0) + end;
+        
+        String finalName= firstPigName + " " + lastPigName;
+        
+        System.out.println("My name in fake pig latin is " + finalName + "!");
+       
+        
+        
+    }
+}
