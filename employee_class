@@ -1,0 +1,42 @@
+/* Brandon Russeau
+ * 5/10/15
+ * Employee class extending Person class
+ */
+public class Employee extends Person {
+
+	private Double hourlyPay;
+	
+	public Employee(){
+		super();
+		hourlyPay=null;
+	}
+	
+	public Employee(String first, String last, int ID, double pay){
+		this.setFirst(first);
+		this.setLast(last);
+		this.setID(ID);
+		hourlyPay=pay;
+	}
+	
+	public double getPay(){
+		double tempPay=hourlyPay;
+		return tempPay;
+	}
+	
+	public void setPay(double newPay){
+		hourlyPay=newPay;
+	}
+	
+	public boolean equals(Object other){
+		if(other==null){
+			return false;
+		}
+		else if(getClass() != other.getClass()){
+			return false;
+		}
+		else{
+			return(getFirst().equals((((Person) other).getFirst()))&&(getLast().equals(((Person) other).getLast()))
+					&&(getID()==((Person) other).getID())&&(this.getPay()==((Employee) other).getPay()));
+		}
+	}
+}
