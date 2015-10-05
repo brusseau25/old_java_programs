@@ -1,0 +1,52 @@
+/* Brandon Russeau
+ * 5/10/15
+ * Abstract person class
+ */
+public abstract class Person {
+	
+	private String firstName;
+	private String lastName;
+	private Integer ID;
+	
+	public Person(){
+		firstName="John";
+		lastName="Doe";
+		ID=null;
+	}
+	
+	public void setFirst(String first){
+		firstName=first;
+	}
+	
+	public void setLast(String last){
+		lastName=last;
+	}
+	
+	public void setID(int ID){
+		this.ID=ID;
+	}
+	
+	public String getFirst(){
+		String temp=firstName;
+		return temp;
+	}
+	
+	public String getLast(){
+		String temp=lastName;
+		return temp;
+	}
+	
+	public int getID(){
+		int temp=ID;
+		return temp;
+	}
+	
+	public boolean equals(Person other){
+		if(other==null){
+			System.out.println("Error:Person does not exist");
+		}
+		//else
+		return( (this.firstName.equals(other.firstName))&&
+				(this.lastName.equals(other.lastName))&&(this.ID==other.ID));
+	}
+}
