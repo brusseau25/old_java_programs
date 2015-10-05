@@ -176,9 +176,9 @@ public class BinaryMath {
 2: Subtract
 3: Exit
 Enter your choice: 1
-Enter 8-bit binary number: 00001101			(+13)
+Enter 8-bit binary number: 00001101		(+13)
 Enter another binary number: 11111011		(-5)
-The sum in binary is: 00001000				(+8)
+The sum in binary is: 00001000			(+8)
 
    Menu   
    ====
@@ -186,7 +186,7 @@ The sum in binary is: 00001000				(+8)
 2: Subtract
 3: Exit
 Enter your choice: 2
-Enter 8-bit binary number: 00001101			(+13)
+Enter 8-bit binary number: 00001101		(+13)
 Enter another binary number: 11111011		(-5)
 The difference in binary is: 00010010		(+18)
 
@@ -196,9 +196,9 @@ The difference in binary is: 00010010		(+18)
 2: Subtract
 3: Exit
 Enter your choice: 1
-Enter 8-bit binary number: 11110011			(-13)
+Enter 8-bit binary number: 11110011		(-13)
 Enter another binary number: 11111011		(-5)
-The sum in binary is: 11101110				(-18)
+The sum in binary is: 11101110			(-18)
 
    Menu   
    ====
@@ -206,7 +206,7 @@ The sum in binary is: 11101110				(-18)
 2: Subtract
 3: Exit
 Enter your choice: 2
-Enter 8-bit binary number: 11111011			(-5)
+Enter 8-bit binary number: 11111011		(-5)
 Enter another binary number: 11110011		(-13)
 The difference in binary is: 00001000		(+8)
  */
