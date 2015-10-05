@@ -1,0 +1,212 @@
+/**
+ * Brandon Russeau
+ * COSC 221/Section 00/Winter 2015
+ * Assignment #3
+ * Perform 8-bit binary addition and subtraction
+ */
+import java.util.*;
+public class BinaryMath {
+	static Scanner in = new Scanner(System.in);
+	static char[] firstNum=new char[8];
+	static char[] secondNum=new char[8];
+	static char[] sum=new char[8];
+	static String userIn;
+
+	public static void main(String[] args)
+	{
+		printMenu();
+		int choice = in.nextInt();
+		while (choice != 3)
+		{
+			dispatch(choice);
+			printMenu();
+			choice = in.nextInt();
+		}
+	}
+
+	//-------------------------------------------------------
+	// Do what the menu item calls for
+	//-------------------------------------------------------
+	public static void dispatch(int choice)
+	{
+
+		switch(choice)
+		{
+		case 1:		//add binary numbers
+			System.out.print("Enter 8-bit binary number: ");
+			userIn=in.next();
+			for(int i=0;i<firstNum.length;i++){
+				firstNum[i]=userIn.charAt(i);
+			}
+			System.out.print("Enter another binary number: ");
+			userIn=in.next();
+			for(int i=0;i<secondNum.length;i++){
+				secondNum[i]=userIn.charAt(i);
+			}
+			addSub(firstNum,secondNum, 1);
+			break;
+		case 2:		//subtract binary numbers
+			System.out.print("Enter 8-bit binary number: ");
+			userIn=in.next();
+			for(int i=0;i<firstNum.length;i++){
+				firstNum[i]=userIn.charAt(i);
+			}
+			System.out.print("Enter another binary number: ");
+			userIn=in.next();
+			for(int i=0;i<secondNum.length;i++){
+				secondNum[i]=userIn.charAt(i);
+			}
+			secondNum=twosComp(secondNum);
+			addSub(firstNum,secondNum, 2);
+			break;
+		case 3:		//exit program
+			System.out.println("Good Bye");
+			break;
+		default:
+			System.out.println("Sorry, invalid choice");
+		}
+	}
+
+	public static void printMenu()		//display menu options
+	{
+		System.out.println("\n   Menu   ");
+		System.out.println("   ====");
+		System.out.println("1: Add");
+		System.out.println("2: Subtract");
+		System.out.println("3: Exit");
+		System.out.print("Enter your choice: ");
+	}
+
+	//add binary numbers
+	public static void addSub(char[] first, char[] second, int choice){		
+		int carry=0;
+		char[] sum=new char[8];
+
+		for(int i=7;i>-1;i--){
+			if(carry==1){
+				if(first[i]=='0' && second[i]=='0'){
+					sum[i]='1';
+					carry=0;
+				}
+				else if(first[i]=='1' && second[i]=='0'){
+					sum[i]='0';
+					carry=1;
+				}
+				else if(first[i]=='0' && second[i]=='1'){
+					sum[i]='0';
+					carry=1;
+				}
+				else if(first[i]=='1' && second[i]=='1'){
+					sum[i]='1';
+					carry=1;
+				}
+			}
+			else{
+				if(first[i]=='0' && second[i]=='0'){
+					sum[i]='0';
+					carry=0;
+				}
+				else if(first[i]=='1' && second[i]=='0'){
+					sum[i]='1';
+					carry=0;
+				}
+				else if(first[i]=='0' && second[i]=='1'){
+					sum[i]='1';
+					carry=0;
+				}
+				else if(first[i]=='1' && second[i]=='1'){
+					sum[i]='0';
+					carry=1;
+				}
+			}
+		}
+		switch(choice){
+		case 1:				//adding binary numbers
+			System.out.print("The sum in binary is: ");
+			for(int i=0;i<sum.length;i++){
+				System.out.print(sum[i]);
+			}
+			break;
+		case 2:				//subtracting binary numbers
+			System.out.print("The difference in binary is: ");
+			for(int i=0;i<sum.length;i++){
+				System.out.print(sum[i]);		
+			}
+			break;
+		}
+	}
+	//convert binary number to two's compliment
+	private static char[] twosComp(char[] num){	
+		for(int i=0;i<num.length;i++){
+			if(num[i]=='1'){
+				num[i]='0';
+			}
+			else{
+				num[i]='1';
+			}
+		}
+		num=add1(num);		//add one to the binary number after it is flipped
+		return num;
+	}
+	private static char[] add1(char[] num ){		//helper method for twosComp method
+		int carry=1;
+
+		for(int i=7;i>-1;i--){
+			if(carry==1){
+				if(num[i]=='0'){
+					num[i]='1';
+					carry=0;
+				}
+				else if(num[i]=='1'){
+					num[i]='0';
+					carry=1;
+				}
+			}
+		}
+		return num;
+	}
+}
+
+
+
+/*
+   Menu   
+   ====
+1: Add
+2: Subtract
+3: Exit
+Enter your choice: 1
+Enter 8-bit binary number: 00001101			(+13)
+Enter another binary number: 11111011		(-5)
+The sum in binary is: 00001000				(+8)
+
+   Menu   
+   ====
+1: Add
+2: Subtract
+3: Exit
+Enter your choice: 2
+Enter 8-bit binary number: 00001101			(+13)
+Enter another binary number: 11111011		(-5)
+The difference in binary is: 00010010		(+18)
+
+   Menu   
+   ====
+1: Add
+2: Subtract
+3: Exit
+Enter your choice: 1
+Enter 8-bit binary number: 11110011			(-13)
+Enter another binary number: 11111011		(-5)
+The sum in binary is: 11101110				(-18)
+
+   Menu   
+   ====
+1: Add
+2: Subtract
+3: Exit
+Enter your choice: 2
+Enter 8-bit binary number: 11111011			(-5)
+Enter another binary number: 11110011		(-13)
+The difference in binary is: 00001000		(+8)
+ */
